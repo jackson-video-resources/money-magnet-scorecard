@@ -4,6 +4,9 @@ You are helping a coach or creator put their scorecard Money Magnet live. They b
 
 Talk to them in plain words, one step at a time. They may never have used a terminal. Never ask them to paste a password into the chat; API keys go straight into Vercel with the commands below.
 
+## First: which computer is this?
+Check before running anything (`node -p "process.platform"` prints `win32` on Windows, `darwin` on a Mac). On Windows, run every command in PowerShell and translate anything written for Mac or Linux into its PowerShell form before running it (`&&` becomes `;`, `mkdir -p` becomes `New-Item -ItemType Directory -Force`, no `export`, use `curl.exe` not `curl`). The `npm run` and `npx` commands below work the same on both. If PowerShell refuses to run `npx` or `npm` scripts, run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` once.
+
 ## Steps
 
 1. **Their content.** Replace `public/config.json` with the config they pasted (it's in the prompt they gave you). Run `npm run check`. If it lists problems, fix only what the problem says (usually a missing https:// link) and tell them what you changed.
@@ -17,9 +20,7 @@ Talk to them in plain words, one step at a time. They may never have used a term
    - **Any other tool:** add a sender to `api/_lib.js` like `toKit`: create or update the contact (first name, email) and apply the two labels the way that tool does it (tags, list membership, a segment or a property), using the tool's official API documentation. Read its key from a new environment variable, add it to `providers()` and `SENDERS`, and add the key with `npx vercel env add`. Then run `npm run check`.
    - **Their logo (optional):** if they give you a logo file, save it as `public/logo.png` (or .svg/.jpg) and set `brand.logo` in `public/config.json` to `/logo.png`. Colours and font are already in the config from the editor.
 4. **Deploy.** `npx vercel --prod --yes`. Note the production URL it prints.
-5. **Test it for real.** Send one test sign-up with their own email:
-   `curl -s -X POST <url>/api/submit -H "content-type: application/json" -d '{"first":"Test","email":"<their email>","answers":[<one 0 per question, comma separated>]}'`
-   The reply must show `"leads":{"sent":[...],"failed":0,"setUp":true}`, and the test contact must show up in their tool with both labels. If `failed` isn't 0, the key is wrong: fix it with `npx vercel env rm <NAME> production`, add it again, and deploy again. Then ask them to check the test contact is in their email tool or sheet.
+5. **Test it for real.** Send one test sign-up with their own email: `npm run test-signup -- <live link> <their email>`. It has to say "Sent to: ..." with no failures (unless they chose no email tool yet). If it says sending failed, the key is wrong: fix it with `npx vercel env rm <NAME> production`, add it again, deploy again and re-run the test. Then ask them to check the test contact is in their tool with both labels.
 6. **Hand back.** Tell them their live link and ask them to paste it into the workshop editor's "My live link" box, which checks everything on its side and switches on their dashboard and their links and QR tool.
 
 ## Result videos (any time, including after launch)
