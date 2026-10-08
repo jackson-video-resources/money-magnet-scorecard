@@ -1,7 +1,8 @@
 /* Money Magnet scorecard. --accent comes from config.json brand.color. */
 *{box-sizing:border-box}
 body{margin:0;font:17px/1.55 var(--font,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif);background:var(--bg,#f6f3ee);color:var(--text,#1d1c1a)}
-.wrap{max-width:620px;margin:0 auto;padding:28px 16px 64px}
+.wrap{max-width:620px;margin:0 auto;padding:28px 16px 64px;visibility:hidden}
+.wrap.ready{visibility:visible}
 .brand{font-weight:800;margin-bottom:32px}
 .brand img{max-height:44px;max-width:220px;display:block}
 h1{font-size:32px;line-height:1.15;margin:0 0 12px}

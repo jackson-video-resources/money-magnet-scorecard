@@ -28,6 +28,7 @@
         document.body.appendChild(t);
       }
       run(c);
+      document.querySelector(".wrap").classList.add("ready");
     });
 
   // Their look: colours, one of a few Google fonts, and a logo (an image in public/ or a full https link).
