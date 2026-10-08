@@ -31,6 +31,13 @@
       run(c);
     });
 
+  // A result's video: a file in public/videos/ or a YouTube link (shown with youtube-nocookie).
+  function video(v) {
+    if (!v) return "";
+    var yt = String(v).match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/);
+    if (yt) return '<div class="vsl"><iframe src="https://www.youtube-nocookie.com/embed/' + yt[1] + '?rel=0&playsinline=1" title="A message for you" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>';
+    return '<div class="vsl"><video src="' + esc(v) + '" controls playsinline preload="metadata" data-track="vsl"></video></div>';
+  }
   function run(c) {
     var picks = [];
     var qBox = $('[data-step="q"]');
@@ -78,8 +85,10 @@
           track("sc_result", { result: r.result.id, score: r.score });
           $('[data-step="result"]').innerHTML =
             '<p class="eyebrow">Your score</p><p class="score">' + r.score + "<small> / " + r.max + "</small></p><h1>" +
-            esc(r.result.headline) + "</h1><p>" + esc(r.result.text) + '</p><a class="cta" data-track="cta-' + esc(r.result.id) + '" href="' + esc(r.result.cta.url) + '">' + esc(r.result.cta.label) + "</a>";
+            esc(r.result.headline) + "</h1><p>" + esc(r.result.text) + "</p>" + video(r.result.video) + '<a class="cta" data-track="cta-' + esc(r.result.id) + '" href="' + esc(r.result.cta.url) + '">' + esc(r.result.cta.label) + "</a>";
           show("result");
+          var vid = document.querySelector('[data-step="result"] video');
+          if (vid) vid.addEventListener("play", function () { track("sc_vsl_play", { result: r.result.id }); }, { once: true });
         })
         .catch(function () {
           btn.disabled = false;

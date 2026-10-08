@@ -64,6 +64,8 @@ export function problems(c) {
         out.push(
           `Result "${r.headline || r.id || "?"}" needs an id, headline, text and a next step with a full https link.`,
         );
+      if (r.video && !/^https?:\/\//.test(r.video) && !fs.existsSync(path.join(process.cwd(), "public", r.video.replace(/^\//, ""))))
+        out.push(`Result "${r.headline}" points at a video that isn't there: public${r.video}.`);
       if (r.min > maxScore(c))
         out.push(
           `Result "${r.headline}" starts at ${r.min}, above the highest possible score (${maxScore(c)}).`,

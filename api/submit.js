@@ -49,7 +49,7 @@ export default async function handler(req, res) {
   res.status(200).json({
     score: total,
     max: lead.max,
-    result: { id: r.id, headline: r.headline, text: r.text, cta: r.cta },
+    result: { id: r.id, headline: r.headline, text: r.text, cta: r.cta, video: r.video || "" },
     leads: {
       sent: d.sent,
       failed: d.failed.length,

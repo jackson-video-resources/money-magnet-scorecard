@@ -18,6 +18,14 @@ Talk to them in plain words, one step at a time. They may never have used a term
    The reply must show `"leads":{"sent":[...],"failed":0,"setUp":true}`. If `failed` isn't 0, the key is wrong: fix it with `npx vercel env rm <NAME> production`, add it again, and deploy again. Then ask them to check the test contact is in their email tool or sheet.
 6. **Hand back.** Tell them their live link and ask them to paste it into the workshop editor's "My live link" box, which checks everything on its side and switches on their dashboard and their links and QR tool.
 
+## Result videos (any time, including after launch)
+They give you a video file and say which result it's for (match it to a result's `headline` or `id` in `public/config.json`; ask if it's unclear).
+1. If `ffmpeg` is installed, shrink it for the web: `ffmpeg -i "<their file>" -vf "scale=-2:720" -c:v libx264 -crf 28 -preset veryfast -c:a aac -b:a 96k -movflags +faststart public/videos/<result id>.mp4`. Without ffmpeg, copy the file to `public/videos/<result id>.mp4` as it is.
+2. If the file is still over 40 MB, don't add it: ask them to upload it to YouTube as unlisted and give you the link instead.
+3. Set that result's `"video"` in `public/config.json` to `/videos/<result id>.mp4` (or the YouTube link).
+4. `npm run check`, then `npx vercel --prod --yes`. Ask them to take the scorecard through to that result and check the video plays.
+Their script guide is `VIDEO-SCRIPT.md` (30 to 45 seconds: name the result, the one thing, what changes, the next step).
+
 ## Don't
 - Change the page structure, the scoring or `api/` code. If something seems broken, say exactly what happened and stop.
 - Commit API keys or put them in any file.
