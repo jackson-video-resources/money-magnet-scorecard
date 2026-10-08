@@ -78,7 +78,11 @@ export function problems(c) {
 }
 
 // ---------- where leads go ----------
-// Set in Vercel's environment variables. Whichever are set are used; the Google Sheet can sit alongside an email tool.
+// Every lead is labelled twice in the member's own tool: once for everyone who took the scorecard, once for
+// their result. The names are the member's choice (config.json "tags"); the defaults come from the title.
+// Kit, Mailchimp and a Google Sheet are built in. For any other tool (HubSpot, ActiveCampaign, Beehiiv,
+// GoHighLevel...) the agent adds a sender below, following AGENTS.md "Any other tool".
+// Keys live in Vercel's environment variables. Whichever are set are used.
 //   KIT_API_KEY                          Kit (ConvertKit) v4 API key
 //   MAILCHIMP_API_KEY, MAILCHIMP_AUDIENCE_ID
 //   SHEET_WEBHOOK_URL                    the Google Sheet's Apps Script web app URL (google-sheet/README.md)
@@ -90,7 +94,13 @@ export function providers(env = process.env) {
   return p;
 }
 
-const tagNames = (c, r) => ["scorecard", `scorecard-${r.id}`];
+const base = (c) =>
+  String(c.title || "scorecard")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 30) || "scorecard";
+export const tagNames = (c, r) => [c.tags?.all || base(c), c.tags?.byResult?.[r.id] || `${c.tags?.all || base(c)}-${r.id}`];
 
 async function toKit(lead, c, r, env, fetchFn) {
   const H = {

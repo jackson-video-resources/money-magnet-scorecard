@@ -1,6 +1,6 @@
 // npm run check: is config.json valid, does scoring land in the right bands, and does the sign-up function
 // work end to end (lead delivery is faked here, so nothing is sent anywhere). Run it before every deploy.
-import { loadConfig, problems, maxScore, resultFor, deliver } from "../api/_lib.js";
+import { loadConfig, problems, maxScore, resultFor, deliver, tagNames } from "../api/_lib.js";
 import handler from "../api/submit.js";
 
 const c = loadConfig();
@@ -36,5 +36,6 @@ const env = { KIT_API_KEY: "k", MAILCHIMP_API_KEY: "m-us1", MAILCHIMP_AUDIENCE_I
 const r = resultFor(c, max);
 const d = await deliver({ at: "now", first: "Test", email: "test@example.com", score: max, max }, c, r, env, fakeFetch);
 if (d.failed.length || d.sent.join() !== "kit,mailchimp,sheet") throw new Error(`delivery: ${JSON.stringify(d)}`);
-if (!calls.some((x) => String(x.init.body).includes(`scorecard-${r.id}`))) throw new Error("the result tag wasn't sent");
-console.log(`lead delivery OK: Kit, Mailchimp and Google Sheet requests built, tagged scorecard-${r.id}`);
+const [allTag, resultTag] = tagNames(c, r);
+if (!calls.some((x) => String(x.init.body).includes(resultTag))) throw new Error("the result tag wasn't sent");
+console.log(`lead delivery OK: requests built for every connected tool, labelled "${allTag}" and "${resultTag}"`);
