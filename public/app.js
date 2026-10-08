@@ -15,8 +15,7 @@
     .then(function (c) {
       document.title = c.title;
       document.querySelector('meta[name="description"]').content = c.promise;
-      document.documentElement.style.setProperty("--accent", c.brand.color || "#1d1c1a");
-      $("#brand").textContent = c.brand.name;
+      brand(c.brand);
       $("#title").textContent = c.title;
       $("#promise").textContent = c.promise;
       $("#intro").textContent = c.intro || "";
@@ -31,6 +30,27 @@
       run(c);
     });
 
+  // Their look: colours, one of a few Google fonts, and a logo (an image in public/ or a full https link).
+  function brand(B) {
+    var root = document.documentElement.style;
+    root.setProperty("--accent", B.color || "#1d1c1a");
+    root.setProperty("--bg", B.bg || "#f6f3ee");
+    root.setProperty("--text", B.text || "#1d1c1a");
+    if (B.font && B.font !== "System") {
+      var l = document.createElement("link");
+      l.rel = "stylesheet";
+      l.href = "https://fonts.googleapis.com/css2?family=" + encodeURIComponent(B.font) + ":wght@400;600;700;800&display=swap";
+      document.head.appendChild(l);
+      root.setProperty("--font", '"' + B.font + '", ui-sans-serif, system-ui, sans-serif');
+    }
+    var el = $("#brand");
+    if (B.logo) {
+      var img = document.createElement("img");
+      img.src = B.logo;
+      img.alt = B.name;
+      el.appendChild(img);
+    } else el.textContent = B.name;
+  }
   // A result's video: a file in public/videos/ or a YouTube link (shown with youtube-nocookie).
   function video(v) {
     if (!v) return "";

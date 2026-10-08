@@ -1,14 +1,15 @@
 /* Money Magnet scorecard. --accent comes from config.json brand.color. */
 *{box-sizing:border-box}
-body{margin:0;font:17px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:#f6f3ee;color:#1d1c1a}
+body{margin:0;font:17px/1.55 var(--font,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif);background:var(--bg,#f6f3ee);color:var(--text,#1d1c1a)}
 .wrap{max-width:620px;margin:0 auto;padding:28px 16px 64px}
 .brand{font-weight:800;margin-bottom:32px}
+.brand img{max-height:44px;max-width:220px;display:block}
 h1{font-size:32px;line-height:1.15;margin:0 0 12px}
 h2{font-size:22px;margin:0 0 12px}
 .lede{font-size:19px}
 button,.cta{display:inline-block;font:inherit;font-weight:700;background:var(--accent,#1d1c1a);color:#fff;border:0;border-radius:10px;padding:14px 22px;cursor:pointer;margin:8px 0;text-decoration:none}
 button.ghost{background:transparent;color:var(--accent,#1d1c1a);border:1.5px solid currentColor}
-.opt{display:block;width:100%;text-align:left;background:#fff;color:#1d1c1a;border:1.5px solid #d8d2c6}
+.opt{display:block;width:100%;text-align:left;background:#fff;color:#1d1c1a;border:1.5px solid #d8d2c6;font-family:inherit}
 .opt:hover,.opt:focus{border-color:var(--accent,#1d1c1a)}
 label{display:block;margin:12px 0;font-weight:600}
 input{font:inherit;width:100%;margin-top:4px;padding:12px;border:1.5px solid #d8d2c6;border-radius:9px;background:#fff}

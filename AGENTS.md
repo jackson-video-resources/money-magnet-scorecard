@@ -15,6 +15,7 @@ Talk to them in plain words, one step at a time. They may never have used a term
    - **Mailchimp:** Profile > Extras > API keys for `MAILCHIMP_API_KEY`, and the audience ID (Audience > Settings > Audience name and defaults) as `MAILCHIMP_AUDIENCE_ID`. Tags work as above.
    - **Google Sheet:** walk them through `google-sheet/Code.gs` (steps at the top of the file), then add the web app URL as `SHEET_WEBHOOK_URL`.
    - **Any other tool:** add a sender to `api/_lib.js` like `toKit`: create or update the contact (first name, email) and apply the two labels the way that tool does it (tags, list membership, a segment or a property), using the tool's official API documentation. Read its key from a new environment variable, add it to `providers()` and `SENDERS`, and add the key with `npx vercel env add`. Then run `npm run check`.
+   - **Their logo (optional):** if they give you a logo file, save it as `public/logo.png` (or .svg/.jpg) and set `brand.logo` in `public/config.json` to `/logo.png`. Colours and font are already in the config from the editor.
 4. **Deploy.** `npx vercel --prod --yes`. Note the production URL it prints.
 5. **Test it for real.** Send one test sign-up with their own email:
    `curl -s -X POST <url>/api/submit -H "content-type: application/json" -d '{"first":"Test","email":"<their email>","answers":[<one 0 per question, comma separated>]}'`

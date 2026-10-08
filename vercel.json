@@ -1,4 +1,8 @@
 {
-  "functions": { "api/submit.js": { "includeFiles": "public/config.json" } },
+  "functions": {
+    "api/submit.js": { "includeFiles": "public/config.json" },
+    "api/q.js": { "includeFiles": "public/config.json" }
+  },
+  "rewrites": [{ "source": "/q/:code", "destination": "/api/q?code=:code" }],
   "headers": [{ "source": "/(.*)", "headers": [{ "key": "X-Content-Type-Options", "value": "nosniff" }] }]
 }

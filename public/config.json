@@ -2,7 +2,11 @@
   "siteKey": "",
   "brand": {
     "name": "Career Growth With Sam",
-    "color": "#225588"
+    "color": "#225588",
+    "bg": "#f6f3ee",
+    "text": "#1d1c1a",
+    "font": "System",
+    "logo": ""
   },
   "title": "The Interview Ready Scorecard",
   "promise": "Answer 8 quick questions and find out if you're ready for your next interview.",
