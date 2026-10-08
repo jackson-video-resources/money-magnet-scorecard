@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Scorecard</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<!-- Built from the Money Magnet scorecard template. The words live in config.json; the structure stays the same. -->
+<main class="wrap">
+  <header class="brand" id="brand"></header>
+  <section class="step" data-step="intro" data-block="intro">
+    <h1 id="title"></h1>
+    <p class="lede" id="promise"></p>
+    <p id="intro"></p>
+    <button type="button" id="start" data-track="start">Start</button>
+  </section>
+  <section class="step" data-step="q" data-block="questions" hidden></section>
+  <form class="step" data-step="email" data-block="form" hidden novalidate>
+    <h2>Where should we send your result?</h2>
+    <label>First name<input name="first" autocomplete="given-name" required maxlength="60"></label>
+    <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+    <button type="submit">Show my score</button>
+    <p class="small" id="privacy"></p>
+    <p class="err" id="err" role="alert" hidden></p>
+  </form>
+  <section class="step" data-step="result" data-block="result" hidden></section>
+</main>
+<script src="/app.js" defer></script>
+</body>
+</html>

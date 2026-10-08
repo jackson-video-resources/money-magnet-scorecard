@@ -1,0 +1,4 @@
+{
+  "functions": { "api/submit.js": { "includeFiles": "public/config.json" } },
+  "headers": [{ "source": "/(.*)", "headers": [{ "key": "X-Content-Type-Options", "value": "nosniff" }] }]
+}

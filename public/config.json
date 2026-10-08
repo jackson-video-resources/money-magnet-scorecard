@@ -1,0 +1,23 @@
+{
+  "siteKey": "",
+  "brand": { "name": "Career Growth With Sam", "color": "#225588" },
+  "title": "The Interview Ready Scorecard",
+  "promise": "Answer 8 quick questions and find out if you're ready for your next interview.",
+  "intro": "Takes about two minutes. You'll get your score straight away, with the one thing to work on next.",
+  "privacy": "We'll email you your result and the occasional tip. Unsubscribe any time.",
+  "questions": [
+    { "q": "How often do you practise answering interview questions out loud?", "answers": [{ "label": "Never", "points": 0 }, { "label": "Once in a while", "points": 1 }, { "label": "Before every interview", "points": 2 }, { "label": "Every week", "points": 3 }] },
+    { "q": "Do you have three stories ready about times you solved a problem at work?", "answers": [{ "label": "None", "points": 0 }, { "label": "One", "points": 1 }, { "label": "Two", "points": 2 }, { "label": "Three or more", "points": 3 }] },
+    { "q": "When they ask what you're looking for, how clear is your answer?", "answers": [{ "label": "I make it up on the spot", "points": 0 }, { "label": "Vague", "points": 1 }, { "label": "Mostly clear", "points": 2 }, { "label": "One clear sentence", "points": 3 }] },
+    { "q": "Do you research the company before the interview?", "answers": [{ "label": "No", "points": 0 }, { "label": "I read the website", "points": 1 }, { "label": "Website and news", "points": 2 }, { "label": "I talk to someone who works there", "points": 3 }] },
+    { "q": "How do you answer 'what's your biggest weakness'?", "answers": [{ "label": "I freeze", "points": 0 }, { "label": "A cliché", "points": 1 }, { "label": "A real one, badly", "points": 2 }, { "label": "A real one, and what I'm doing about it", "points": 3 }] },
+    { "q": "Do you ask them questions at the end?", "answers": [{ "label": "Never", "points": 0 }, { "label": "One generic one", "points": 1 }, { "label": "A couple", "points": 2 }, { "label": "Specific ones I prepared", "points": 3 }] },
+    { "q": "Do you follow up after an interview?", "answers": [{ "label": "No", "points": 0 }, { "label": "Sometimes", "points": 1 }, { "label": "Usually", "points": 2 }, { "label": "Always, within a day", "points": 3 }] },
+    { "q": "How many interviews have turned into offers in the last year?", "answers": [{ "label": "None", "points": 0 }, { "label": "One", "points": 1 }, { "label": "Two", "points": 2 }, { "label": "Three or more", "points": 3 }] }
+  ],
+  "results": [
+    { "id": "starting-out", "min": 0, "headline": "Starting out", "text": "You're going into interviews unprepared, and it shows. Start with one practice answer out loud every day this week.", "cta": { "label": "Watch the free training", "url": "https://www.youtube.com/" } },
+    { "id": "getting-close", "min": 9, "headline": "Getting close", "text": "You've got the basics. Your stories are what's holding you back.", "cta": { "label": "Get the interview workbook", "url": "https://example.org/workbook" } },
+    { "id": "interview-ready", "min": 17, "headline": "Interview ready", "text": "You're ready. The next step is getting the offer you actually want.", "cta": { "label": "Book a call", "url": "https://example.org/call" } }
+  ]
+}
